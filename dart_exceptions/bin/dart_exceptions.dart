@@ -1,11 +1,31 @@
+import 'dart:math';
 import 'controllers/bank_controller.dart';
 import 'exceptions/bank_controller_exceptions.dart';
 import 'models/account.dart';
 
+
+void testingNullSafety(){
+  Account? myAccount;
+  
+  //Simulando comunicação externa
+  Random rng = Random();
+  int randomNumber = rng.nextInt(10);
+  print(randomNumber);
+  if(randomNumber<=5){
+    myAccount = Account(name: 'Rick', balance: 200, isAuthenticated: true);
+  }
+  //operador ternário
+  print(myAccount !=null ? myAccount.balance : "Conta nula");
+
+  //Safe call: (chamada segura)
+  print(myAccount?.balance);
+  }
+
 void main() {
 
-  BankController bankController = BankController();
+  testingNullSafety();
 
+  BankController bankController = BankController();
 
   bankController.addAccount(
       id: "01A-RI",
